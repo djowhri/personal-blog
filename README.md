@@ -110,6 +110,7 @@ npm install
 # Supabase 配置
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ```
 
 ### 启动开发服务器
@@ -136,47 +137,6 @@ npm start
 | `npm run start` | 启动生产服务器 |
 | `npm run lint` | 代码检查 |
 
-## 路由清单
-
-| 路由 | 说明 | 权限 |
-|------|------|------|
-| `/` | 首页 | 公开 |
-| `/about` | 关于 | 公开 |
-| `/article/[id]` | 文章详情 | 公开 |
-| `/category/[id]` | 分类页 | 公开 |
-| `/tag/[id]` | 标签页 | 公开 |
-| `/search` | 搜索 | 公开 |
-| `/login` | 登录 | 公开 |
-| `/register` | 注册 | 公开 |
-| `/reset-password` | 密码重置 | 公开 |
-| `/editor` | 文章编辑器 | 需登录 |
-| `/admin` | 管理后台 | 需登录 |
-| `/admin/articles` | 文章管理 | 需登录 |
-| `/admin/categories` | 分类管理 | 需登录 |
-| `/admin/comments` | 评论管理 | 需登录 |
-| `/admin/tags` | 标签管理 | 需登录 |
-
-## 数据库表结构 (Supabase)
-
-```sql
--- 用户资料 (profiles)
-profiles: id, username, avatar_url, bio, created_at
-
--- 文章 (articles)
-articles: id, title, content, excerpt, cover_image, author_id, category_id, status, views, created_at, updated_at
-
--- 分类 (categories)
-categories: id, name, slug, description
-
--- 标签 (tags)
-tags: id, name, slug
-
--- 文章标签关联 (article_tags)
-article_tags: article_id, tag_id
-
--- 评论 (comments)
-comments: id, article_id, user_id, content, parent_id, created_at
-```
 
 ## 部署
 
@@ -186,17 +146,3 @@ comments: id, article_id, user_id, content, parent_id, created_at
 2. 在 Vercel 导入项目
 3. 配置环境变量
 4. 部署完成
-
-### 自托管
-
-```bash
-# 构建
-npm run build
-
-# 使用 PM2 启动
-pm2 start npm --name "personal-blog" -- start
-```
-
-## 许可证
-
-MIT License
